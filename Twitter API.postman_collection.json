@@ -116,8 +116,25 @@
 		{
 			"name": "Tweet",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "tweet",
+							"value": "Sample Tweet",
+							"description": "Tweet message",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"description": "Image (png file)",
+							"type": "file",
+							"src": "/Users/chathuranga/Desktop/Screenshot 2024-02-05 at 2.48.54 PM.png"
+						}
+					]
+				},
 				"url": {
 					"raw": "http://localhost:3000/twitter/post",
 					"protocol": "http",

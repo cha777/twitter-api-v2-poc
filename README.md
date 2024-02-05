@@ -10,3 +10,7 @@ This is a POC app to tweet messages with media using Twitter API V1 and V2 using
 4. Update PORT value if needed. Defaults to 3000
 5. Install dependencies (node v16+)
 6. Run application using `npm start`
+
+## API Testing
+
+Refer postman collection for API testing

@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const multer = require('multer');
 const bodyParser = require('body-parser');
 const TwitterApi = require('twitter-api-v2').TwitterApi;
 const path = require('path');
@@ -11,6 +12,10 @@ const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Set up multer middleware
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 const appKey = process.env.APP_KEY;
 const appSecret = process.env.APP_SECRET;
@@ -105,13 +110,12 @@ app.get('/twitter/access_token', async (req, res) => {
   }
 });
 
-app.get('/twitter/post', async (req, res) => {
+app.post('/twitter/post', upload.single('image'), async (req, res) => {
   try {
     if (client) {
-      const imgPath = path.resolve('/Users/chathuranga/Desktop/Screenshot 2024-02-05 at 2.48.54 PM.png');
-      const mediaId = await client.v1.uploadMedia(imgPath);
+      const mediaId = await client.v1.uploadMedia(req.file.buffer, { mimeType: 'image/png' });
       const tweet = await client.v2.tweet({
-        text: 'My tweet text with image!',
+        text: req.body.tweet,
         media: { media_ids: [mediaId] },
       });
 
