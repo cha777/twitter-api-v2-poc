@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "db177c9f-9ee1-49f0-bcaf-e0f9eef0be17",
+		"name": "Twitter API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16302435",
+		"_collection_link": "https://orange-escape-849248.postman.co/workspace/DirectFN-Pro11~11b23bed-339c-4d5f-a7ea-9f8b0ad16074/collection/16302435-db177c9f-9ee1-49f0-bcaf-e0f9eef0be17?action=share&source=collection_link&creator=16302435"
+	},
+	"item": [
+		{
+			"name": "Verify Credentials",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/twitter/verify_credentials",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"twitter",
+						"verify_credentials"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.collectionVariables.set(\"accessToken\", jsonData.oauth_token);",
+							"pm.collectionVariables.set(\"accessSecret\", jsonData.oauth_token_secret);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/twitter/request_token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"twitter",
+						"request_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request Access Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"accessToken\": \"{{accessToken}}\",\n    \"accessSecret\": \"{{accessSecret}}\",\n    \"oauth_verifier\": \"{{oauth_verifier}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/twitter/access_token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"twitter",
+						"access_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tweet",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/twitter/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"twitter",
+						"post"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "accessToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "accessSecret",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "oauth_verifier",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

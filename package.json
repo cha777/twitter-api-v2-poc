@@ -1,0 +1,24 @@
+{
+  "name": "twitter-api-v2-poc",
+  "version": "1.0.0",
+  "description": "Twitter API POC to submit tweets with media using twitter-api-v2 module",
+  "engines": {
+    "node": "16+"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "keywords": [
+    "twitter API",
+    "express",
+    "twitter-api-v2"
+  ],
+  "author": "cha777 <chathuranga_wm@yahoo.com>",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "twitter-api-v2": "^1.16.0"
+  }
+}
