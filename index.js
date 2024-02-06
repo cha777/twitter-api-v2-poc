@@ -123,8 +123,8 @@ app.post('/twitter/post', upload.single('image'), async (req, res) => {
     } else {
       res.status(401).json({ error: 'User not logged in' });
     }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
     console.error(`Error while executing post: ${err.message}`);
   }
 });
